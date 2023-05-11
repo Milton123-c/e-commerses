@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {useNavigate} from 'react-router-dom'
 import UseAuthentication from '../hooks/UseAuthentication'
-import defaultRegisterValues from "../utils/DefaultRegisterValues";
+import defaultRegisterValues from "../utils/defaultRegisterValues";
 import alertify from "alertifyjs";
 import "../styles/register.css";
 import Loading from "../components/Load/Loading";
