@@ -4,13 +4,14 @@ import Home from './pages/Home'
 import { useEffect } from 'react'
 import { getAllProductsThunk } from './store/slices/products.slice'
 import { useDispatch } from 'react-redux'
-import Header from './shared/header'
+
 import ProductId from './pages/ProductId'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
 import { Purchased } from './pages/Purchased'
 import Protected from './components/Protected/Protected'
+import Header from './shared/Header'
 
 
 
