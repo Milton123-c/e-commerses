@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {useNavigate} from 'react-router-dom'
-import UseAuthentication from "../hooks/Useauthentication";
+import UseAuthentication from '../hooks/UseAuthentication'
 import defaultRegisterValues from "../utils/DefaultRegisterValues";
 import alertify from "alertifyjs";
 import "../styles/register.css";
