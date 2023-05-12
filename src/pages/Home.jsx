@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CardProduct from "../components/home/CardProduct";
 import "../styles/productGlobal.css";
 import Filtrar from "../components/Filtrar";
 import Presentacion from "../components/Presentacion";
 import Cart from "./Cart";
 import Loading from "../components/Load/Loading";
+import { getAllProductsCartThunk } from "../store/slices/cart.slice";
 
 const Home = () => {
   const { showSearch } = useSelector((state) => state);
@@ -15,6 +16,10 @@ const Home = () => {
   const { productsGlobal } = useSelector((state) => state);
 
   const [useSearch, setUseSearch] = useState();
+
+  const {cartGlobal} = useSelector(state => state)
+
+  const dispath = useDispatch()
 
   const search = useRef();
 
@@ -27,6 +32,11 @@ const Home = () => {
   const handleShowFilter = () => {
     setShowFilterTwo(!showFilterTwo);
   };
+
+
+  useEffect(()=> {
+    dispath(getAllProductsCartThunk())
+  }, [])
 
  
   return (
@@ -78,10 +88,10 @@ const Home = () => {
                       .toUpperCase()
                       .includes(useSearch.toUpperCase().trim())
                   ) {
-                    return <CardProduct key={prod.id} product={prod} />;
+                    return <CardProduct key={prod.id} product={prod} cartGlobal={cartGlobal} />;
                   }
                 } else {
-                  return <CardProduct key={prod.id} product={prod} />;
+                  return <CardProduct key={prod.id} product={prod} cartGlobal={cartGlobal}  />;
                 }
               }
             }
@@ -94,10 +104,10 @@ const Home = () => {
                       .toUpperCase()
                       .includes(useSearch.toUpperCase().trim())
                   ) {
-                    return <CardProduct key={prod.id} product={prod} />;
+                    return <CardProduct key={prod.id} product={prod} cartGlobal={cartGlobal} />;
                   }
                 } else {
-                  return <CardProduct key={prod.id} product={prod} />;
+                  return <CardProduct key={prod.id} product={prod} cartGlobal={cartGlobal} />;
                 }
               }
             }
@@ -108,10 +118,10 @@ const Home = () => {
                   .toUpperCase()
                   .includes(useSearch.toUpperCase().trim())
               ) {
-                return <CardProduct key={prod.id} product={prod} />;
+                return <CardProduct key={prod.id} product={prod} cartGlobal={cartGlobal}  />;
               }
             } else {
-              return <CardProduct key={prod.id} product={prod} />;
+              return <CardProduct key={prod.id} product={prod} cartGlobal={cartGlobal}  />;
             }
           }
         })}

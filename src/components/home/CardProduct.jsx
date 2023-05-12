@@ -5,57 +5,74 @@ import alertify from "alertifyjs";
 import { useEffect, useState } from "react";
 import Loading from "../Load/Loading";
 
-const CardProduct = ({ product }) => {
+const CardProduct = ({ product, cartGlobal }) => {
   const navigate = useNavigate();
 
-  const { addProductToCart, error, setError } = UseCrudCart();
-  const [showError, setShowError] = useState(false)
+  const { addProductToCart, updateProductFromCard, error, setError } =
+    UseCrudCart();
+  const [showError, setShowError] = useState(false);
 
   const handleSelectProduct = () => {
     navigate(`/product/${product.id}`);
     window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    })
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const handleBtnClick = (e) => {
     e.stopPropagation();
+
+    const prodQuantity = cartGlobal.find(
+      (element) => element.product.id == product.id
+    );
+
     const data = {
       quantity: 1,
       productId: product.id,
     };
-    addProductToCart(data);
-    setShowError(true)
+
+    if (prodQuantity) {
+
+        const productUpdate = prodQuantity.id
+        const quantityNumber = prodQuantity.quantity + 1
+        
+        updateProductFromCard(productUpdate,{quantity : quantityNumber})
+        setShowError(true);
+        
+    } else {
+
+      addProductToCart(data);
+      setShowError(true);
+
+    }
   };
 
   useEffect(() => {
     if (error == false) {
       alertify.alert("Exelent", "new product to shopping cart");
-      setShowError(false)
+      setShowError(false);
       setError();
     } else if (error == true) {
       alertify.alert("Error", "product not added");
-      setShowError(false)
+      setShowError(false);
       setError();
     }
-
   }, [error]);
 
   const price = parseFloat(product.price) + 100;
 
   return (
     <article onClick={handleSelectProduct} className="product">
-      {
-        showError == false ? 
-        '':
+      {showError == false ? (
+        ""
+      ) : (
         <div className="containerLoad">
-            <div className="load__container">
+          <div className="load__container">
             <Loading />
-            </div>
-           
           </div>
-      }
+        </div>
+      )}
       <a href="#home"></a>
       <header className="product__header">
         <img className="product__img-1" src={product.images[0].url} alt="" />
