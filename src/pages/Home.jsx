@@ -7,6 +7,7 @@ import Presentacion from "../components/Presentacion";
 import Cart from "./Cart";
 import Loading from "../components/Load/Loading";
 import { getAllProductsCartThunk } from "../store/slices/cart.slice";
+import Footer from "../components/Footer/Footer";
 
 const Home = () => {
   const { showSearch } = useSelector((state) => state);
@@ -67,6 +68,7 @@ const Home = () => {
       </div>
 
       <section className="home__container">
+
         {productsGlobal ? (
           ""
         ) : (
@@ -125,7 +127,14 @@ const Home = () => {
             }
           }
         })}
+
+        
       </section>
+
+
+      <Footer/>
+    
+    
     </div>
   );
 };

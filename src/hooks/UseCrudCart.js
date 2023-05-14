@@ -34,8 +34,9 @@ const UseCrudCart = () => {
     axios
       .put(url, data, getConfiToken())
       .then(() => {
-        dispatch(getAllProductsCartThunk());
         setError(false);
+        dispatch(getAllProductsCartThunk());
+        
       })
       .catch(() => setError(true));
   };
