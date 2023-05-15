@@ -14,10 +14,13 @@ const UseCrudCart = () => {
     axios
       .post(url, data, getConfiToken())
       .then(() => {
-        dispatch(getAllProductsCartThunk());
         setError(false);
+        dispatch(getAllProductsCartThunk());
+        
       })
-      .catch(() => setError(true));
+      .catch((err) => {
+        console.log(err);
+        setError(true)});
   };
 
   const deleteProductFromCard = (id) => {
