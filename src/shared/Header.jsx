@@ -13,7 +13,7 @@ const Header = () => {
 
   const { showCart } = useSelector((state) => state);
 
-  const {cartGlobal} = useSelector(state => state)
+  const { cartGlobal } = useSelector((state) => state);
 
   const dispath = useDispatch();
 
@@ -39,10 +39,9 @@ const Header = () => {
     dispath(setShowSearh(!showSearch));
   };
 
-  useEffect(()=>{
-    dispath(getAllProductsCartThunk())
-  }, [])
-
+  useEffect(() => {
+    dispath(getAllProductsCartThunk());
+  }, []);
 
   return (
     <article
@@ -58,8 +57,8 @@ const Header = () => {
         </h1>
 
         <article className="navbar__cart-info">
-          <span onClick={handleCart} className="navbar__cart-span">
-            <i  className="bx bxs-cart-alt"></i>
+          <span onClick={handleCart} className="navbar__cart-span uno">
+            <i className="bx bxs-cart-alt"></i>
             <span>{cartGlobal?.length || 0}</span>
           </span>
 
@@ -88,17 +87,19 @@ const Header = () => {
               </Link>
               <i className="bx bx-shopping-bag"></i>
             </li>
-            <li className="nav__li active">
-              <button onClick={handleCart} className="navbar__btn">
-                Cart
-              </button>
-              <i className="bx bx-store-alt"></i>
-            </li>
+            
             <li className="nav__li active">
               <button onClick={handleSearch} className="navbar__btn">
                 Search
               </button>
               <i className="bx bx-search-alt-2"></i>
+            </li>
+
+            <li className="nav__li active">
+              <span onClick={handleCart} className="navbar__cart-span dos">
+                <i className="bx bxs-cart-alt"></i>
+                <span>{cartGlobal?.length || 0}</span>
+              </span>
             </li>
           </ul>
         </article>
