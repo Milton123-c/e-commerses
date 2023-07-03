@@ -22,7 +22,9 @@ const CardProduct = ({ product, cartGlobal }) => {
 
   const handleBtnClick = (e) => {
     e.stopPropagation();
-
+    
+    if(!localStorage.getItem('token')) return navigate('/login')
+    
     const prodQuantity = cartGlobal.find(
       (element) => element.product.id == product.id
     );
